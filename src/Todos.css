@@ -1,0 +1,39 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: 0 auto;
+  padding: 8px;
+}
+
+.todoItem {
+  padding: 4px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+}
+
+.todoItemText {
+  flex: 1;
+}
+
+.todoItemButton {
+  cursor: pointer;
+}
+
+#newTodoInput {
+  display: inline-flex;
+  flex: 1;
+  padding: 4px;
+  border: 1px solid #eaeaea;
+  margin-right: 4px;
+}
+
+#newTodoForm {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+#addTodoButton {
+  border-color: #eaeaea;
+  background-color: #fff;
+}
