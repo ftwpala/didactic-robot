@@ -13,3 +13,8 @@ yarn build
 ```
 
 to bundle your application
+
+
+```
+yarn start
+```
