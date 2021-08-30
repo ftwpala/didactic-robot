@@ -7,30 +7,38 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./ReactDatePicker.css";
 import "./Todos.css";
 
-import cyclePng from "./images/Cycle.png"
+import cyclePng from "./images/Cycle.png";
 
 export const Todos = () => {
   const [newTodoInput, setNewTodoInput] = React.useState("");
   const [deadlineDate, setDeadlineDate] = React.useState<Date>();
 
   let todo1: TodoItem = { text: "Hello there!", itemStatus: TodoStatus.Todo };
-  let todo2: TodoItem = { text: "General Kenobi!", itemStatus: TodoStatus.Todo };
+  let todo2: TodoItem = {
+    text: "General Kenobi!",
+    itemStatus: TodoStatus.Todo,
+  };
   let todoWithDate1: TodoItem = {
-    text: "*Wheezes to death*",
+    text: "*Pulls out 4 lightsabers like an absolute MADMAN*",
     itemStatus: TodoStatus.Todo,
     itemDeadline: new Date(),
   };
-  
+
   let Date2025 = new Date();
   Date2025.setFullYear(2025);
-  
+
   let todoWithDate2: TodoItem = {
-    text: "*Wheezes to death in 2025*",
+    text: "*Spins like a bayblade*",
     itemStatus: TodoStatus.Todo,
     itemDeadline: Date2025,
   };
 
-  const [todos, setTodos] = React.useState([todo1, todo2, todoWithDate1,todoWithDate2]);
+  const [todos, setTodos] = React.useState([
+    todo1,
+    todo2,
+    todoWithDate1,
+    todoWithDate2,
+  ]);
 
   const addInput = useRef<HTMLInputElement>(null);
 
@@ -41,7 +49,6 @@ export const Todos = () => {
   };
 
   const isDeadlineClose = (date: Date) => {
-    
     var Difference_In_Time = new Date().getTime() - date.getTime();
     var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
     return Difference_In_Days > -7;
@@ -127,38 +134,33 @@ export const Todos = () => {
           key={`${todo}-${i}`}
           className={`col-12 d-flex todoItem todoStatus_${
             todo.itemStatus === "In Progress" ? "InProgress" : todo.itemStatus
-          } ${todo.itemDeadline && isDeadlineClose(todo.itemDeadline) ? "deadline_close" : "" }`}
+          } ${
+            todo.itemDeadline && isDeadlineClose(todo.itemDeadline)
+              ? "deadline_close"
+              : ""
+          }`}
         >
+          <span className="col-6 todoItemText">{todo.text}</span>
+          <span
+            className="col-3 todoItemStatusText"
+            onClick={() => cycleStatus(i)}
+          >
+            {todo.itemStatus}
+            <img
+              className="mx-1"
+              width="15px"
+              height="15px"
+              src={cyclePng}
+              alt="Cycle Status"
+            />
+          </span>
+          <span className="col-2">
             {todo.itemDeadline ? (
-              <>
-                <span className="col-6 todoItemText">{todo.text}</span>
-                <span
-                  className="col-3 todoItemStatusText"
-                  onClick={() => cycleStatus(i)}
-                >
-                  {todo.itemStatus}
-                  <img className="mx-1" width="15px" height="15px" src={cyclePng} alt="Cycle Status"/>
-                </span>
-                <span className="col-2">
-                  {new Intl.DateTimeFormat().format(todo.itemDeadline)}
-                </span>
-                
-              </>
+              <>{new Intl.DateTimeFormat().format(todo.itemDeadline)}</>
             ) : (
-              <>
-                <span className="col-6 todoItemText">{todo.text}</span>
-                <span
-                  className="col-3 todoItemStatusText"
-                  onClick={() => cycleStatus(i)}
-                >
-                  {todo.itemStatus}
-                  <img className="mx-1" width="15px" height="15px" src={cyclePng} alt="Cycle Status"/>
-                </span>
-                <span className="col-2">
-
-                </span>
-              </>
+              <></>
             )}
+          </span>
           <span
             className="todoItemButton col-1 text-center"
             onClick={() => removeTodo(i)}
