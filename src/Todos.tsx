@@ -7,6 +7,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./ReactDatePicker.css";
 import "./Todos.css";
 
+import cyclePng from "./images/Cycle.png"
+
 export const Todos = () => {
   const [newTodoInput, setNewTodoInput] = React.useState("");
   const [deadlineDate, setDeadlineDate] = React.useState<Date>();
@@ -135,6 +137,7 @@ export const Todos = () => {
                   onClick={() => cycleStatus(i)}
                 >
                   {todo.itemStatus}
+                  <img className="mx-1" width="15px" height="15px" src={cyclePng} alt="Cycle Status"/>
                 </span>
                 <span className="col-2">
                   {new Intl.DateTimeFormat().format(todo.itemDeadline)}
@@ -149,6 +152,7 @@ export const Todos = () => {
                   onClick={() => cycleStatus(i)}
                 >
                   {todo.itemStatus}
+                  <img className="mx-1" width="15px" height="15px" src={cyclePng} alt="Cycle Status"/>
                 </span>
                 <span className="col-2">
 
